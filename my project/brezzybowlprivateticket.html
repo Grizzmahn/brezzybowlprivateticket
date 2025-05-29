@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREZZYBOWLPVT - Private Ticket Sales</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('images/brown_background.jpg') center/cover no-repeat fixed;
+      color: white;
+    }
+    .header, .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .logo {
+      width: 60px;
+    }
+    .welcome {
+      height: 100vh;
+      background: url('images/red_jumping_background.jpg') center/cover no-repeat;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .welcome h1, .welcome p {
+      margin: 10px;
+    }
+    .tour-box, .register-box, .purchase-box, .payment-info {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 5px 0;
+    }
+    a {
+      color: white;
+    }
+    .timer {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="images/logo.png" alt="Breezy Bowl Logo" class="logo">
+  </div>
+
+  <div class="welcome">
+    <h1>Welcome To<br>Breezy Bowl XX Private Ticket Sales</h1>
+    <div class="tour-box">
+      <p><strong>Available Tours</strong></p>
+      <p>Europe - Tour and Meet & Greet</p>
+      <p>North America - Tour and Meet & Greet</p>
+    </div>
+    <button onclick="document.getElementById('registration').scrollIntoView({ behavior: 'smooth' });">Register</button>
+  </div>
+
+  <div class="register-box" id="registration">
+    <h2>Register</h2>
+    <form id="registrationForm">
+      <input type="text" name="fullName" placeholder="Full Name" required>
+      <input type="date" name="dob" placeholder="Date of Birth" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="cell" placeholder="Cell Number" required>
+      <input type="text" name="country" placeholder="Country" required>
+      <input type="text" name="city" placeholder="City" required>
+      <input type="password" name="password" placeholder="Create Password" required>
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <div class="tour-box">
+    <h2>Ticket Prices</h2>
+    <h3>Europe</h3>
+    <ul>
+      <li>Basic: £215</li>
+      <li>Regular: £449 per person</li>
+      <li>VIP: £700</li>
+      <li>VVIP: £1,500</li>
+      <li>Meet & Greet: £2,500</li>
+    </ul>
+    <h3>North America</h3>
+    <ul>
+      <li>Basic: $215</li>
+      <li>Regular: $449 per person</li>
+      <li>VIP: $700</li>
+      <li>VVIP: $1,500</li>
+      <li>Meet & Greet: $2,500</li>
+    </ul>
+    <p><strong>Tickets Available:</strong> 446,000 (reducing as purchased)</p>
+  </div>
+
+  <div class="payment-info">
+    <h2>Payment (Bitcoin Only)</h2>
+    <p><strong>Bitcoin Address:</strong> 1CFUoQnNq9X6yRVp1GL1s2pYomvnYjXcNg</p>
+    <img src="images/qr_code.png" alt="Bitcoin QR Code" style="width:150px;height:150px;">
+  </div>
+
+  <div class="purchase-box hidden" id="purchase">
+    <h2>Purchase Tickets</h2>
+    <form id="purchaseForm">
+      <input type="number" name="tickets" placeholder="Number of Tickets" min="1" max="10" required>
+      <input type="password" name="purchasePassword" placeholder="Enter Purchase Password (BREEZYBOWL)" required>
+      <div class="timer" id="timer">Time left: 30:00</div>
+      <button type="submit">Confirm Payment</button>
+    </form>
+  </div>
+
+  <div class="footer">
+    <div>
+      <img src="images/logo.png" alt="Logo" class="logo">
+      <p>Breezy Bowl XX<br>Is a temporary site to give those that couldn't get the ticket early enough another chance.</p>
+    </div>
+    <div>
+      <p>Address: Los Angeles, United States of America</p>
+      <p>Email: <a href="mailto:contact@breezybowlpvt@gmail.com">contact@breezybowlpvt@gmail.com</a></p>
+      <p>Phone: <a href="sms:+13235468406">+1 (323) 546-8406</a> (Text Only)</p>
+    </div>
+    <p>Thank you, Team Breezy</p>
+  </div>
+
+<script>
+  document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const password = document.querySelector('input[name="password"]').value;
+    const confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    alert("Registration successful! A confirmation code has been sent to your email.");
+    document.getElementById('purchase').classList.remove('hidden');
+    document.getElementById('purchase').scrollIntoView({ behavior: 'smooth' });
+    startTimer(30 * 60);
+  });
+
+  document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const purchasePassword = document.querySelector('input[name="purchasePassword"]').value;
+    if (purchasePassword !== 'BREEZYBOWL') {
+      alert('Incorrect password!');
+      return;
+    }
+    alert('Payment successful! Ticket details and QR code will be sent to your email.');
+    setTimeout(() => {
+      window.location.href = 'https://www.google.com';
+    }, 3000);
+  });
+
+  function startTimer(duration) {
+    let timer = duration, minutes, seconds;
+    const display = document.getElementById('timer');
+    const interval = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = "Time left: " + minutes + ":" + seconds;
+
+      if (--timer < 0) {
+        clearInterval(interval);
+        alert("Time expired! Please restart purchase process.");
+        document.getElementById('purchase').classList.add('hidden');
+      }
+    }, 1000);
+  }
+
+  // Pop password reminder every 5 seconds during payment
+  setInterval(() => {
+    if (!document.getElementById('purchase').classList.contains('hidden')) {
+      alert('Reminder: Payment Password is BREEZYBOWL');
+    }
+  }, 5000);
+</script>
+
+</body>
+</html>
